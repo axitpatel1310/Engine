@@ -1,0 +1,121 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Engine</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+  </head>
+  <body id="nav">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url "index" %}">APEX ENGINE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "index" %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Privacy Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "about_us" %}">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "contact_us" %}">Contact Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "login" %}">Login Another</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              More
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url "profile" %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url "history" %}">History</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#"></a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "register" %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "login" %}">Login</a>
+          </li>
+          {% endif %}
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 14 14">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+            
+              <li><a class="dropdown-item"><b>General</b></a></li>
+              <li><a class="dropdown-item" href=""></a></li>
+
+              <li><hr class="dropdown-divider"></li> 
+              
+              <li><a class="dropdown-item"><b>Personal</b></a></li>
+              <li><a class="dropdown-item" href="#"></a></li>
+            
+            </ul>
+          </li>
+        </ul>
+        <button class="btn active me-md-2" id="mode" type="button">Light Mode</button>
+        <button class="btn active me-md-2" id="mode2" type="button">Dark Mode</button>
+      </div>
+    </div>
+  </nav>
+    {% block content %}
+
+    {% endblock content %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"></script>
+      <script>
+        var btn = document.getElementById('mode');
+        var btn2 = document.getElementById('mode2');
+
+        btn.style.background = 'white';
+        btn2.style.background = 'black';
+        
+        function lightmode() 
+        {
+          var body = document.body;
+          body.style.background = 'white';
+        }
+        function darkmode() 
+        {
+          var body = document.body;
+          body.style.background = 'linear-gradient(rgba(0,8,51,0.9),rgba(0,8,51,0.9))';
+        }
+        
+        btn.addEventListener('click', lightmode);
+        btn2.addEventListener('click', darkmode);
+      </script>
+  </body>
+</html>

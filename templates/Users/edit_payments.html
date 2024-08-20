@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    <div class="container">      
+<h2>Payment Details</h2>
+      <hr>
+      <div class="mb-3 row">
+          <div class="col-sm-10">
+              <b>Payment Method:</b> <input type="text" readonly class="form-control-plaintext"
+                  id="staticEmail" value="{{ User.payment_method}}">
+              <b>Payment Info:</b> <input type="text" readonly class="form-control-plaintext"
+                  id="staticEmail" value="{{ User.payment_info}}">
+          </div>
+      </div>
+      <hr>
+      <div class="mb-3 row">
+          <label for="inputPayment_method" class="col-sm-2 col-form-label">Payment Method</label>
+          <div class="col-sm-10">
+              <input type="text" name="payment_method" class="form-control" id="inputPayment_method" placeholder="(Eg: Paypal, Btc Wallet)">
+          </div>
+      </div>
+      <div class="mb-3 row">
+          <label for="inputPayment_info" class="col-sm-2 col-form-label">Payment Info</label>
+          <div class="col-sm-10">
+              <input type="text" name="payment_info" class="form-control"
+                  id="inputPayment_info" placeholder="(Payment Recieving Address)">
+          </div>
+      </div>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock content %}

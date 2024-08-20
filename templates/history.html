@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          History
+        </button>
+      </h2>
+      {% for i in past %}
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">{{i}} <p class=" me-md-2"> {{i.date}}<p></div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock content %}

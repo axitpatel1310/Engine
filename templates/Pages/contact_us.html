@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <br>
+    <h1>Contact US</h1>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{user.email}}">
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Write Your Query...</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </div>
+    </div>
+    </form>
+</div>
+{% endblock content %}

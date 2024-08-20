@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  body{
+      background-image: linear-gradient(rgba(0,8,51,0.9),rgba(0,8,51,0.9));
+      height: 100%;
+      width: auto;
+  }
+  .search-bar{
+      margin-top: 0%;
+      width: 100%;
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      border-radius: 60px;
+      padding: 0px 20px;
+      backdrop-filter: blur(4px) saturate(100%);
+      box-shadow: 10px 10px 10px 10px aqua;
+  }
+  .search-bar input{
+      background: transparent;
+      border: 0;
+      flex: 1;
+      outline: none;
+      padding: 24px 20px;
+      font-size: 20px;
+      color: #cac5ff;
+  }
+  ::placeholder{
+      color: #cac5ff;
+  }
+  .search-bar button{
+      width: 40%;
+      color: aqua;
+  }
+  .search-bar button{
+      border: 0;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      background: #58629b;
+      cursor: pointer;
+  }
+  h1{
+      color: aqua;
+      text-align: center;
+      margin-top: 15%;
+      font-size: 350%;
+      letter-spacing: 7px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: bolder;
+  }
+</style>
+  <table align="center">
+    <tbody>
+      <tr>
+        <td>
+          <h1>APEX ENGINE</h1>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {% if user.is_authenticated %}
+          <form action="search" method="POST" class="search-bar">
+            {% csrf_token %}
+            <input type="text" placeholder="Welcome, {{user.username}}"
+              name="search">
+            <button type="submit">Search</button>
+          </form>
+          {% else %}
+          <center>
+          <a class="btn btn-primary" href="{% url "login" %}">LOGIN</a>
+        </center>
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock content %}

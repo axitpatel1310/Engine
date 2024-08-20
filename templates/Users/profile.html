@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="width: auto;">
+    <table>
+        <tbody>
+            <tr>
+                <td style="width: 250px;">
+                    <img src="{{user.image}}" style="height: 200px; width: 200px;" class="card-img-top" alt="No Profile Photo">
+                </td>
+                <td>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Username: </b>{{user.username}}</h5>
+                        <p class="card-text"><b>Fullname: </b>{{user.first_name}} {{user.last_name}}</p>
+                        <p class="card-text"><b>Description: </b>{{user.description}}</p>
+                        <p class="card-text"><b>Earnings: </b>{{user.earnings}} </p>
+                        <a class="btn btn-primary" href="{% url 'edit_profile' user_id=user.id %}">Edit</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="card-body">
+                        <center> 
+                        <h5 class="card-title"><b>Earnings: </b>{{user.earnings}}</h5>
+                        <p class="card-text"><b>Payment Account: </b>{{user.payment_method}}</p>
+                        <a class="btn btn-primary" href="{% url 'edit_payment_info' user_id=user.id %}">Edit Payment Info</a>
+                    </center>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <center>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">        
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">                 
+                                TimeSpent
+                            </button>
+                          </h2>
+                          {% for i in user_time %}
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"><b>DATE:</b> {{i.date}}</div>
+                            <div class="accordion-body"><b>Start:</b> {{i.start_time}} | <b>End:</b> {{i.end_time}}</div>
+                          </div>
+                          {% endfor %}
+                        </div>
+                    </div>   
+                </center>                 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+{% endblock content %}

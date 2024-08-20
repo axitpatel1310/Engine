@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'sans-serif';
+        }
+        .container{
+            width: 100%;
+            height: 20vh;
+            padding: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-bar{
+            width: 100%;
+            max-width: 700px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            padding: 10px 20px;
+            backdrop-filter: blur(4px) saturate(180%);
+            box-shadow: 10px 10px 10px 10px aqua;
+        }
+        .search-bar input{
+            background: transparent;
+            border: 0;
+            flex: 1;
+            outline: none;
+            padding: 24px 20px;
+            font-size: 20px;
+            color: #cac5ff;
+        }
+        ::placeholder{
+            color: #cac5ff;
+        }
+        .search-bar button{
+            width: 60px;
+            color: aqua;
+        }
+        .search-bar button{
+            border: 0;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background: #58629b;
+            cursor: pointer;
+        }
+        .search-results{
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0px 10px 10px 2px rgba(56, 56, 56, 0.103);
+            text-decoration: none;
+        }
+    </style>
+    <div class="container">
+        <form action="search" method="POST" class="search-bar">
+            {% csrf_token %}
+            <input type="text" placeholder="Search Something Interesting" name="search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <fieldset style="border-radius: 20px; width: auto;">
+    <div style="padding-left: 50px; padding-right: 50px;" class="search-results">
+        {{count}}
+        <br>
+        <center>{{ random_ad.code | safe }}</center>
+        <br>
+        {% for i,j,l in results %}
+        <div class="card" style="width: auto;">
+            <div class="card-body">
+                <a href="{{ i }}" class="card-link"><h5 class="card-title">{{i}}</h5></a>
+              <h6 class="card-subtitle mb-2 text-body-secondary">{{ j }}</h6>
+              <p class="card-text">{{l}}</p>
+            </div>
+          </div>
+        {% if forloop.counter|divisibleby:3 and not forloop.last %}
+        <br>
+        <b>Sponsored</b>
+                <p>{{ random_ad.title }}</p>
+                <p>{{ random_ad.description }}</p>
+                <center>{{ random_ad.code | safe }}</center>
+                <br>
+        <hr>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <center>{{ random_ad.code | safe }}</center>
+        <br>
+    </div>
+    </fieldset>
+    </div>
+    {% if msg %}
+    <script>
+       alert("{{msg}}");
+    </script>
+    {% endif %}
+    {% endblock content %}
